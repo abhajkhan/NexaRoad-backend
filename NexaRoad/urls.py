@@ -20,7 +20,7 @@ from core.views import LocationAutocomplete
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("location-autocomplete/", LocationAutocomplete.as_view(), name="location-autocomplete"),
+    path('location-autocomplete/', LocationAutocomplete.as_view(), name='location-autocomplete'),
 
     path('api/', include('core.urls')), 
 ]
