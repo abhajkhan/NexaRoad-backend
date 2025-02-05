@@ -10,3 +10,21 @@ response =
         "location_name": "Kottayam"
     }
 ]
+
+GET /api/services/
+
+response =
+[
+    {
+        "id": 1,
+        "name": "Ambulance"
+    },
+    {
+        "id": 2,
+        "name": "Fuel"
+    },
+    {
+        "id": 3,
+        "name": "Puncture Works"
+    }
+]

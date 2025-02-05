@@ -1,8 +1,14 @@
 from django.db import models
 
+class Service(models.Model):
+    name=models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+    
 class ServiceProvider(models.Model):
     name = models.CharField(max_length=255)
-    service_type = models.CharField(max_length=50)  
+    service_type = models.ForeignKey(Service, on_delete=models.CASCADE)  
     mobile_number = models.CharField(max_length=15)
     location_name = models.CharField(max_length=255, blank=True, null=True)  # Autocomplete Field
     # latitude = models.FloatField()

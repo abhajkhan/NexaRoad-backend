@@ -31,7 +31,7 @@ class NearbyServiceProvidersView(APIView):
         print(f"the location name is: {location_name}")
 
         # Filter service providers by location name
-        providers = ServiceProvider.objects.filter(location_name=location_name)
+        providers = ServiceProvider.objects.filter(location_name__icontains=location_name)
         serializer = ServiceProviderSerializer(providers, many=True)
         
         return Response(serializer.data)
@@ -46,7 +46,11 @@ class LocationAutocomplete(View):
             return JsonResponse([], safe=False)
 
         url = f"https://nominatim.openstreetmap.org/search?q={query}&format=json&addressdetails=1"
-        response = requests.get(url)
+        headers = {
+            "User-Agent": "nexaroad/1.0 (abhajkhan02@gmail.com)" 
+        }
+
+        response = requests.get(url, headers=headers)
         print(f"the response is: {response}")
         locations = []
 
@@ -54,5 +58,14 @@ class LocationAutocomplete(View):
             data = response.json()
             for place in data[:5]:  # Limit results to 5
                 locations.append({"id": place["display_name"], "text": place["display_name"]})
+                print(f"the locations are: {locations}")
 
-        return JsonResponse(locations, safe=False)
+        return JsonResponse({"results": locations})  
+
+from rest_framework import generics
+from .models import Service
+from .serializers import ServiceSerializer
+
+class ServiceList(generics.ListAPIView):
+    queryset = Service.objects.all()  # Get all Service objects
+    serializer_class = ServiceSerializer  # Use the ServiceSerializer
