@@ -4,10 +4,17 @@ response =
 [
     {
         "id": 1,
-        "name": "cross roads puncture works",
-        "service_type": "Work Shop",
-        "mobile_number": "9218473588",
-        "location_name": "Kottayam"
+        "name": "Mobile Puncture",
+        "mobile_number": "9237456732",
+        "location_name": "Kochi, Ernakulam, Kerala, India",
+        "service_type": 3
+    },
+    {
+        "id": 4,
+        "name": "Hindustan Pumps",
+        "mobile_number": "9273645282",
+        "location_name": "Kochi, Ernakulam, Kerala, 682001, India",
+        "service_type": 2
     }
 ]
 
